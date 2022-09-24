@@ -1,5 +1,6 @@
 package com.rumahsakit.model;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import lombok.Getter;
 import lombok.Setter;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -12,7 +13,7 @@ import java.util.Date;
 @Schema(name = "Rumah Sakit API", description = "representation")
 @Getter
 @Setter
-public class Staff {
+public class Staff extends PanacheEntityBase {
 
     @Id
     @SequenceGenerator(

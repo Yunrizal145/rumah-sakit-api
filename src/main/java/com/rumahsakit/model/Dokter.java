@@ -1,5 +1,6 @@
 package com.rumahsakit.model;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import lombok.Getter;
 import lombok.Setter;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @Schema(name = "Rumah Sakit API", description = "representation")
 @Getter
 @Setter
-public class Dokter {
+public class Dokter extends PanacheEntityBase {
 
     @Id
     @SequenceGenerator(
@@ -20,27 +21,27 @@ public class Dokter {
             initialValue = 1,
             allocationSize = 1)
     @GeneratedValue(generator = "idDokterSequence")
-    @Column(name = "dokterId", nullable = false, unique = true)
+    @Column(name = "dokterId", unique = true)
     private Long dokterId;
 
-    @Column(name = "nama_lengkap", nullable = false)
+    @Column(name = "nama_lengkap")
     private String namaLengkap;
 
-    @Column(name = "is_spesialis", nullable = false)
+    @Column(name = "is_spesialis")
     private Boolean isSpesialis;
 
-    @Column(name = "spesialis_nama", nullable = false)
+    @Column(name = "spesialis_nama")
     private String spesialisNama;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email")
     private String email;
 
-    @Column(name = "phone_number", nullable = false)
+    @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "status", nullable = false)
+    @Column(name = "status")
     private String status;
 
-    @Column(name = "gaji", nullable = false)
+    @Column(name = "gaji")
     private Long gaji;
 }

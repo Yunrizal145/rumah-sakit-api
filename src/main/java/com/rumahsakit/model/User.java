@@ -14,8 +14,6 @@ import javax.persistence.*;
 @Schema(name = "Rumah Sakit API", description = "representation")
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class User extends PanacheEntityBase {
 
     @Id
@@ -39,7 +37,13 @@ public class User extends PanacheEntityBase {
     @Schema(required = true)
     private String password;
 
-    @Column(name = "role")
-    private String role;
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
+    @Column(name = "user_type")
+    private String userType;
 
 }

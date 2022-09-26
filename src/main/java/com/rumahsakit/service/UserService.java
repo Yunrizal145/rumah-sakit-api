@@ -1,16 +1,41 @@
 package com.rumahsakit.service;
 
+import com.rumahsakit.model.Dokter;
+import com.rumahsakit.model.Perawat;
+import com.rumahsakit.model.Staff;
 import com.rumahsakit.model.User;
 import com.rumahsakit.util.JwtUtil;
+import io.quarkus.runtime.StartupEvent;
 import io.vertx.core.json.JsonObject;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.event.Observes;
 import javax.transaction.Transactional;
 import javax.ws.rs.core.Response;
 import java.util.Optional;
 
 @ApplicationScoped
 public class UserService {
+
+    @Transactional
+    public User superAdmin(@Observes StartupEvent event){
+        User user = new User();
+        Optional<User> userOptional = User.find("username = ?1", "rizal").firstResultOptional();
+
+        if (userOptional.isEmpty()) {
+
+            user.setName("HAMMAD YUNRIZAL AUSHAF");
+            user.setUsername("rizal");
+            user.setPassword("20200040145");
+            user.setEmail("hamad.yunrizal@gmail.com");
+            user.setPhoneNumber("089540467293");
+            user.setUserType("admin");
+
+            user.persist();
+        }
+        return user;
+    }
+
 
     // Validation Login
     public Response login(JsonObject request){
@@ -26,10 +51,9 @@ public class UserService {
             return Response.status(Response.Status.BAD_REQUEST).entity("WRONG_PASSWORD").build();
         }
 
-        String token = JwtUtil.generateJwt(user);
         JsonObject response = new JsonObject();
         response.put("data", user);
-        response.put("token", token);
+        response.put("Message", "Anda Berhasil Login >_< ");
 
         return Response.ok().entity(response.getMap()).build();
 
@@ -37,12 +61,14 @@ public class UserService {
 
 
     // Validation Register
+    @Transactional
     public Response register(JsonObject request){
-        String name = request.getString("name");
-        String username = request.getString("username");
-        String password = request.getString("password");
+        User user = new User();
+        user.setName(request.getString("name"));
+        user.setUsername(request.getString("username"));
+        user.setPassword(request.getString("password"));
 
-        User user = persistResponce(name, username, password);
+        user.persist();
 
         String token = JwtUtil.generateJwt(user);
         JsonObject response = new JsonObject();
@@ -50,19 +76,6 @@ public class UserService {
         response.put("token", token);
 
         return Response.ok().entity(response.getMap()).build();
-    }
-
-
-    @Transactional
-    public User persistResponce(String name, String username, String password){
-        User user = new User();
-        user.setName(name);
-        user.setUsername(username);
-        user.setPassword(password);
-
-        user.persist();
-
-        return user;
     }
 
 }

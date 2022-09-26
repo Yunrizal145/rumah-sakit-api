@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "user")
-@Schema(name = "Rumah Sakit API", description = "representation")
+@Schema(name = "Rumah Sakit API", description = "User Table")
 @Getter
 @Setter
 public class User extends PanacheEntityBase {
@@ -39,6 +39,7 @@ public class User extends PanacheEntityBase {
     private String email;
 
     @Column(name = "phone_number")
+    @Schema(required = true)
     private String phoneNumber;
 
     @Column(name = "user_type")

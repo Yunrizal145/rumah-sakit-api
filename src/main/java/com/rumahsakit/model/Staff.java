@@ -1,5 +1,6 @@
 package com.rumahsakit.model;
 
+import com.rumahsakit.category.StaffCategory;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +11,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "staff")
-@Schema(name = "Rumah Sakit API", description = "representation")
+@Schema(name = "Rumah Sakit API", description = "Staff Table")
 @Getter
 @Setter
 public class Staff extends PanacheEntityBase {
@@ -22,34 +23,34 @@ public class Staff extends PanacheEntityBase {
             initialValue = 1,
             allocationSize = 1)
     @GeneratedValue(generator = "idStaffSequence")
-    @Column(name = "staffId", nullable = false, unique = true)
-    private Long perawatId;
+    @Column(name = "staffId", unique = true)
+    private Long staffId;
 
-    @Column(name = "nama_lengkap", nullable = false)
+    @Column(name = "nama_lengkap")
     private String namaLengkap;
 
-    @Column(name = "gender", nullable = false)
+    @Column(name = "gender")
     private String gender;
 
-    @Column(name = "posisi", nullable = false)
+    @Column(name = "posisi")
     private String posisi;
 
-    @Column(name = "start_time", nullable = false)
+    @Column(name = "start_time")
     private Date startTime;
 
-    @Column(name = "end_time", nullable = false)
+    @Column(name = "end_time")
     private Date endTime;
 
-    @Column(name = "gaji", nullable = false)
+    @Column(name = "gaji")
     private Long gaji;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email")
     private String email;
 
-    @Column(name = "phone_number", nullable = false)
+    @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "status", nullable = false)
+    @Column(name = "status")
     private String status;
 
 }

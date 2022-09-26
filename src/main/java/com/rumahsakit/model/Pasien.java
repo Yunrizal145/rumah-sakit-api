@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "pasien")
-@Schema(name = "Rumah Sakit API", description = "representation")
+@Schema(name = "Rumah Sakit API", description = "Pasien Table")
 @Getter
 @Setter
 public class Pasien extends PanacheEntityBase {
@@ -21,28 +21,28 @@ public class Pasien extends PanacheEntityBase {
             initialValue = 1,
             allocationSize = 1)
     @GeneratedValue(generator = "idPasienSequence")
-    @Column(name = "pasienId", nullable = false, unique = true)
+    @Column(name = "pasienId", unique = true)
     private Long pasienId;
 
-    @Column(name = "nama_lengkap", nullable = false)
+    @Column(name = "nama_lengkap")
     private String namaLengkap;
 
-    @Column(name = "gender", nullable = false)
+    @Column(name = "gender")
     private String gender;
 
-    @Column(name = "status", nullable = false)
+    @Column(name = "status")
     private String status;
 
-    @Column(name = "address", nullable = false)
+    @Column(name = "address")
     private String address;
 
     @Column(name = "email")
     private String email;
 
-    @Column(name = "phone_number", nullable = false)
+    @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "is_cover_bpjs", nullable = false)
+    @Column(name = "is_cover_bpjs")
     private Boolean isCoverBpjs;
 
 }

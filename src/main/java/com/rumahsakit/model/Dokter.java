@@ -1,5 +1,6 @@
 package com.rumahsakit.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "dokter")
-@Schema(name = "Rumah Sakit API", description = "representation")
+@Schema(name = "Rumah Sakit API", description = "Dokter Table")
 @Getter
 @Setter
 public class Dokter extends PanacheEntityBase {

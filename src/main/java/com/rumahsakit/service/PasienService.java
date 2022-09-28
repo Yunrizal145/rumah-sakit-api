@@ -9,7 +9,6 @@ import io.vertx.core.json.JsonObject;
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -75,8 +74,7 @@ public class PasienService {
 
     // Pagination Pasien
     public Response getListDataPasien(Integer page){
-        List<Pasien> pasien = new ArrayList<>();
-        pasien = Pasien.findAll().page(page, 10).list();
+        List<Pasien> pasien = Pasien.findAll().page(page, 10).list();
 
         JsonObject result = new JsonObject();
         result.put("data", pasien);

@@ -3,6 +3,7 @@ package com.rumahsakit.service;
 import com.rumahsakit.model.Dokter;
 import com.rumahsakit.model.Perawat;
 import com.rumahsakit.model.Staff;
+import com.rumahsakit.util.DateUtil;
 import io.vertx.core.json.JsonObject;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -23,10 +24,11 @@ public class GajiService {
 
         Dokter dokter = dokterOptional.get();
         dokter.setGaji(request.getLong("gaji"));
+        dokter.setAudit(DateUtil.GetDateTime());
 
         dokter.persist();
 
-        return Response.ok().entity(dokter).build();
+        return Response.ok().entity("DATA_UPDATED").build();
     }
 
 
@@ -40,10 +42,11 @@ public class GajiService {
 
         Perawat perawat = perawatOptional.get();
         perawat.setGaji(request.getLong("gaji"));
+        perawat.setAudit(DateUtil.GetDateTime());
 
         perawat.persist();
 
-        return Response.ok().entity(perawat).build();
+        return Response.ok().entity("DATA_UPDATED").build();
     }
 
 
@@ -57,9 +60,10 @@ public class GajiService {
 
         Staff staff = staffOptional.get();
         staff.setGaji(request.getLong("gaji"));
+        staff.setAudit(DateUtil.GetDateTime());
 
         staff.persist();
 
-        return Response.ok().entity(staff).build();
+        return Response.ok().entity("DATA_UPDATED").build();
     }
 }

@@ -1,8 +1,5 @@
 package com.rumahsakit.service;
 
-import com.rumahsakit.model.Dokter;
-import com.rumahsakit.model.Perawat;
-import com.rumahsakit.model.Staff;
 import com.rumahsakit.model.User;
 import com.rumahsakit.util.JwtUtil;
 import io.quarkus.runtime.StartupEvent;
@@ -20,18 +17,20 @@ public class UserService {
     @Transactional
     public User superAdmin(@Observes StartupEvent event){
         User user = new User();
-        Optional<User> userOptional = User.find("username = ?1", "rizal").firstResultOptional();
+        Optional<User> userOptional = User.find("username = ?1", "super").firstResultOptional();
 
         if (userOptional.isEmpty()) {
 
             user.setName("HAMMAD YUNRIZAL AUSHAF");
-            user.setUsername("rizal");
+            user.setUsername("super");
             user.setPassword("20200040145");
-            user.setEmail("hamad.yunrizal@gmail.com");
+            user.setEmail("super.admin@gmail.com");
             user.setPhoneNumber("089540467293");
-            user.setUserType("admin");
+            user.setUserType("super_admin");
 
             user.persist();
+
+            return user;
         }
         return user;
     }
@@ -51,9 +50,11 @@ public class UserService {
             return Response.status(Response.Status.BAD_REQUEST).entity("WRONG_PASSWORD").build();
         }
 
+        String token = JwtUtil.generateJwt(user);
         JsonObject response = new JsonObject();
         response.put("data", user);
-        response.put("Message", "Anda Berhasil Login >_< ");
+        response.put("message", "Anda Berhasil Login >_< ");
+        response.put("token", token);
 
         return Response.ok().entity(response.getMap()).build();
 
@@ -67,6 +68,7 @@ public class UserService {
         user.setName(request.getString("name"));
         user.setUsername(request.getString("username"));
         user.setPassword(request.getString("password"));
+        user.setUserType(request.getString("user_type"));
 
         user.persist();
 

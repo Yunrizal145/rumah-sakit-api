@@ -46,4 +46,10 @@ public class StaffController {
     public Response createDataStaff(JsonObject request){
         return staffService.createDataStaff(request);
     }
+
+    @POST
+    @Path("/filter")
+    public Response filterDataStaff(JsonObject request){
+        return staffService.filterDataStaff(request);
+    }
 }

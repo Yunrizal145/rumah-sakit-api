@@ -14,7 +14,7 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.text.ParseException;
+
 
 @Path("/dokter")
 @Produces(MediaType.APPLICATION_JSON)
@@ -93,11 +93,15 @@ public class DokterController {
                     description = "Create the Data",
                     required = true,
                     content = @Content(schema = @Schema(implementation = Dokter.class))
-            )JsonObject request) throws ParseException {
+            )JsonObject request) {
 
         return dokterService.createDataDokter(request);
     }
 
 
-
+    @POST
+    @Path("/filter")
+    public Response list(JsonObject request){
+        return dokterService.filterDataDokter(request);
+    }
 }

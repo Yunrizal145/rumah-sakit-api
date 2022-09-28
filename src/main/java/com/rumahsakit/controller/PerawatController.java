@@ -96,5 +96,10 @@ public class PerawatController {
         return perawatService.createDataPerawat(request);
     }
 
+    @POST
+    @Path("/filter")
+    public Response filterDataPerawat(JsonObject request){
+        return perawatService.filterDataPerawat(request);
+    }
 
 }

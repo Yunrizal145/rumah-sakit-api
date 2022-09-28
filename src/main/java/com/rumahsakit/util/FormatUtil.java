@@ -16,14 +16,14 @@ public class FormatUtil {
         return matcher.find();
     }
 
-    public static boolean isStandardDobInput(String input){
-        Pattern pattern = Pattern.compile("^\\d{2}-\\d{2}-\\d{4}$");
+    public static boolean isStandardTimeInput(String input){
+        Pattern pattern = Pattern.compile("^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$");
         Matcher matcher = pattern.matcher(input);
         return matcher.find();
     }
 
     public static boolean isStandardAlphabetInput(String input){
-        Pattern pattern = Pattern.compile("^[A-Za-z ]+$");
+        Pattern pattern = Pattern.compile("^[A-Za-z. ]+$");
         Matcher matcher = pattern.matcher(input);
         return matcher.find();
     }

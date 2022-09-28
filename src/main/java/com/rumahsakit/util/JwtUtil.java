@@ -12,7 +12,7 @@ public class JwtUtil {
 
     public static String generateJwt(User user){
 
-        HashSet<String> roles = new HashSet<>(Arrays.asList("user", "admin"));
+        HashSet<String> roles = new HashSet<>(Arrays.asList("super_admin", "admin", "user"));
 
         return Jwt.issuer("https://example.com/issuer")
                 .subject("Token")
@@ -20,9 +20,6 @@ public class JwtUtil {
                 .groups(roles)
                 .claim("name", user.getUsername())
                 .claim("password", user.getPassword())
-                .expiresAt(
-                        System.currentTimeMillis() + 3600
-                )
                 .sign();
     }
 

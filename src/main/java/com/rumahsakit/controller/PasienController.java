@@ -41,4 +41,10 @@ public class PasienController {
         return pasienService.createDataPasien(request);
     }
 
+    @POST
+    @Path("/filter")
+    public Response filterDataPasien(JsonObject request){
+        return pasienService.filterDataPasien(request);
+    }
+
 }

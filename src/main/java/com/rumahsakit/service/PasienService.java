@@ -1,5 +1,6 @@
 package com.rumahsakit.service;
 
+import com.google.common.base.Strings;
 import com.rumahsakit.category.StaffCategory;
 import com.rumahsakit.model.Pasien;
 import com.rumahsakit.util.BasicUtil;
@@ -7,6 +8,9 @@ import com.rumahsakit.util.FormatUtil;
 import io.vertx.core.json.JsonObject;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -14,6 +18,10 @@ import java.util.Optional;
 
 @ApplicationScoped
 public class PasienService {
+
+    @Inject
+    EntityManager em;
+
 
     // Membuat Data Pasien
     @Transactional
@@ -44,7 +52,7 @@ public class PasienService {
 
         pasien.persist();
 
-        return Response.ok().entity(pasien).build();
+        return Response.ok().entity("DATA_PASIEN_CREATED").build();
 
     }
 
@@ -57,6 +65,10 @@ public class PasienService {
 
         JsonObject result = new JsonObject();
         result.put("data", pasien);
+        // Pagination
+        result.put("total", Pasien.findAll().list().size());
+        result.put("totalPage", BasicUtil.roundUp(Pasien.count(), 10));
+
         return Response.ok().entity(result).build();
     }
 
@@ -69,6 +81,10 @@ public class PasienService {
 
         JsonObject result = new JsonObject();
         result.put("data", pasien);
+        // Pagination
+        result.put("total", Pasien.findAll().list().size());
+        result.put("totalPage", BasicUtil.roundUp(Pasien.count(), 10));
+
         return Response.ok().entity(result).build();
     }
 
@@ -83,4 +99,51 @@ public class PasienService {
 
         return Response.ok().entity(result).build();
     }
+
+
+    // Filter Data Pasien
+    public Response filterDataPasien(JsonObject request){
+        Integer limit = request.getInteger("limit");
+        Integer offset = request.getInteger("offset");
+
+        String nama = request.getString("nama_lengkap");
+        String email = request.getString("email");
+        String phoneNumber = request.getString("phone_number");
+
+        // Implementasi sql
+        StringBuilder sb = new StringBuilder();
+        sb.append(" SELECT * FROM pasien ");
+        sb.append(" WHERE TRUE ");
+        if(!Strings.isNullOrEmpty(nama)){
+            sb.append(" AND nama_lengkap ILIKE :nama_lengkap ");
+        }if(!Strings.isNullOrEmpty(email)){
+            sb.append(" AND email ILIKE :email ");
+        }if(!Strings.isNullOrEmpty(phoneNumber)){
+            sb.append(" AND phone_number ILIKE :phoneNumber ");
+        }
+
+        Query query = em.createNativeQuery(sb.toString(), Pasien.class);
+
+        if(!Strings.isNullOrEmpty(nama)){
+            query.setParameter("nama_lengkap", nama);
+        }if(!Strings.isNullOrEmpty(email)){
+            query.setParameter("email", email);
+        }if(!Strings.isNullOrEmpty(phoneNumber)){
+            query.setParameter("phone_number", phoneNumber);
+        }
+
+        query.setFirstResult(offset);
+        query.setMaxResults(limit);
+
+        List<Pasien> pasien = query.getResultList();
+
+        JsonObject result = new JsonObject();
+        result.put("data", pasien);
+        // Pagination
+        result.put("total", Pasien.findAll().list().size());
+        result.put("totalPage", BasicUtil.roundUp(Pasien.count(), 10));
+
+        return Response.ok().entity(result).build();
+    }
+
 }

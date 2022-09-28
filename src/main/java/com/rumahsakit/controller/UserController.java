@@ -20,15 +20,16 @@ public class UserController {
 
     @POST
     @Path("/login")
-//    @PermitAll
+    @PermitAll
     public Response login(JsonObject request){
         return service.login(request);
     }
 
     @POST
     @Path("/register")
-//    @RolesAllowed("admin")
+    @RolesAllowed("admin")
     public Response register(JsonObject request){
         return service.register(request);
     }
+
 }

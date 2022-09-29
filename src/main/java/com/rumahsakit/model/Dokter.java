@@ -1,6 +1,5 @@
 package com.rumahsakit.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import lombok.Getter;
 import lombok.Setter;
@@ -45,4 +44,16 @@ public class Dokter extends PanacheEntityBase {
 
     @Column(name = "gaji")
     private Long gaji;
+
+    @Column(name = "audit")
+    private String audit;
+
+    @OneToMany
+    @JoinColumn(name = "dokter_id")
+    private JadwalPraktek jadwalPraktek;
+
+    @OneToMany
+    @JoinColumn(name = "dokter_id")
+    private DaftarRawatInap daftarRawatInap;
+
 }

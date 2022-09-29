@@ -1,6 +1,5 @@
 package com.rumahsakit.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,7 +17,7 @@ public class Perawat extends PanacheEntityBase {
     @Id
     @SequenceGenerator(
             name = "idPerawatSequence",
-            sequenceName = "id_Perawat_Sequence",
+            sequenceName = "Id_Perawat_Sequence",
             initialValue = 1,
             allocationSize = 1)
     @GeneratedValue(generator = "idPerawatSequence")
@@ -43,4 +42,18 @@ public class Perawat extends PanacheEntityBase {
     @Column(name = "status")
     private String status;
 
+    @Column(name = "audit")
+    private String audit;
+
+    @OneToMany
+    @JoinColumn(name = "foreign_id")
+    private DaftarShift daftarShift;
+
+    @OneToMany
+    @JoinColumn(name = "perawat_satu_id")
+    private DaftarRawatInap daftarRawatInap1;
+
+    @OneToMany
+    @JoinColumn(name = "perawat_dua_id")
+    private DaftarRawatInap daftarRawatInap2;
 }

@@ -1,6 +1,5 @@
 package com.rumahsakit.model;
 
-import com.rumahsakit.category.StaffCategory;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import lombok.Getter;
 import lombok.Setter;
@@ -52,5 +51,12 @@ public class Staff extends PanacheEntityBase {
 
     @Column(name = "status")
     private String status;
+
+    @Column(name = "audit")
+    private String audit;
+
+    @OneToMany
+    @JoinColumn(name = "foreign_id")
+    private DaftarShift daftarShift;
 
 }

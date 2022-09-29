@@ -45,4 +45,11 @@ public class Pasien extends PanacheEntityBase {
     @Column(name = "is_cover_bpjs")
     private Boolean isCoverBpjs;
 
+    @ManyToOne
+    @JoinColumn(name = "pasien_id")
+    private RiwayatPenyakit riwayatPenyakit;
+
+    @OneToMany
+    @JoinColumn(name = "pasien_id")
+    private DaftarRawatInap daftarRawatInap;
 }

@@ -18,11 +18,10 @@ public class User extends PanacheEntityBase {
     @SequenceGenerator(
             name = "idUserSequence",
             sequenceName = "id_User_Sequence",
-            initialValue = 1,
             allocationSize = 1)
     @GeneratedValue(generator = "idUserSequence")
-    @Column(name = "id", nullable = false, unique = true)
-    private Long idUser;
+    @Column(name = "userId", unique = true)
+    private Long userId;
 
     @Column(name = "name")
     private String name;
@@ -39,10 +38,12 @@ public class User extends PanacheEntityBase {
     private String email;
 
     @Column(name = "phone_number")
-    @Schema(required = true)
     private String phoneNumber;
 
     @Column(name = "user_type")
     private String userType;
 
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private UserPermission userPermission;
 }

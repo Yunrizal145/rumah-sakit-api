@@ -38,7 +38,5 @@ public class ResepObat extends PanacheEntityBase {
     @Column(name = "deskripsi")
     private String deskripsi;
 
-    @OneToMany
-    @JoinColumn(name = "obatId")
-    private Obat obat;
+
 }

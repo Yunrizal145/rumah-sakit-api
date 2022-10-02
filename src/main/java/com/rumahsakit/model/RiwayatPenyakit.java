@@ -25,10 +25,7 @@ public class RiwayatPenyakit extends PanacheEntityBase {
     @Column(name = "riwayatPenyakitId")
     private Long riwayatPenyakitId;
 
-    // Pasien Id
-    @OneToMany
-    @JoinColumn(name = "pasienId")
-    private Pasien pasien;
+
 
     @Column(name = "nama")
     private String nama;

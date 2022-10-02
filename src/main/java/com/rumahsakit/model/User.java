@@ -1,6 +1,10 @@
 package com.rumahsakit.model;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import io.quarkus.security.jpa.Password;
+import io.quarkus.security.jpa.Roles;
+import io.quarkus.security.jpa.UserDefinition;
+import io.quarkus.security.jpa.Username;
 import lombok.Getter;
 import lombok.Setter;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -12,6 +16,7 @@ import javax.persistence.*;
 @Schema(name = "Rumah Sakit API", description = "User Table")
 @Getter
 @Setter
+@UserDefinition
 public class User extends PanacheEntityBase {
 
     @Id
@@ -28,10 +33,12 @@ public class User extends PanacheEntityBase {
 
     @Column(name = "username")
     @Schema(required = true)
+    @Username
     private String username;
 
     @Column(name = "password")
     @Schema(required = true)
+    @Password
     private String password;
 
     @Column(name = "email")
@@ -41,9 +48,8 @@ public class User extends PanacheEntityBase {
     private String phoneNumber;
 
     @Column(name = "user_type")
+    @Roles
     private String userType;
 
-    @OneToMany
-    @JoinColumn(name = "user_id")
-    private UserPermission userPermission;
+
 }

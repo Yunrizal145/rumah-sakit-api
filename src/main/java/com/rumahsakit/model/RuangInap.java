@@ -36,7 +36,5 @@ public class RuangInap extends PanacheEntityBase {
     @Column(name = "ïs_kosong")
     private Boolean isKosong;
 
-    @OneToMany
-    @JoinColumn(name = "ruang_inap_id")
-    private DaftarRawatInap daftarRawatInap;
+
 }

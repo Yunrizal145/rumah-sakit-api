@@ -37,9 +37,6 @@ public class JadwalPraktek extends PanacheEntityBase {
     @Column(name = "deskripsi")
     private String deskripsi;
 
-    // Dokter Id
-    @ManyToOne
-    @JoinColumn(name = "dokterId")
-    private Dokter dokterId;
+
 
 }

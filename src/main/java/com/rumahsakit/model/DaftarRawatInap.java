@@ -25,25 +25,25 @@ public class DaftarRawatInap extends PanacheEntityBase {
     @Column(name = "daftarRawatInapId", unique = true)
     private Long daftarRawatInapId;
 
-    // Pasien Id
-    @Column(name = "pasien_id")
-    private Pasien pasienId;
-
-    // Ruang Inap Id
-    @Column(name = "ruang_inap_id")
-    private RuangInap ruangInapId;
-
-    // Dokter Id
-    @Column(name = "dokter_id")
-    private Dokter dokterId;
-
-    // Perawat 1 Id
-    @Column(name = "perawat_satu_id")
-    private Perawat perawatSatuId;
-
-    // Perawat 2 Id
-    @Column(name = "perawat_dua_id")
-    private Perawat perawatDuaId;
+//    // Pasien Id
+//    @Column(name = "pasien_id")
+//    private Pasien pasienId;
+//
+//    // Ruang Inap Id
+//    @Column(name = "ruang_inap_id")
+//    private RuangInap ruangInapId;
+//
+//    // Dokter Id
+//    @Column(name = "dokter_id")
+//    private Dokter dokterId;
+//
+//    // Perawat 1 Id
+//    @Column(name = "perawat_satu_id")
+//    private Perawat perawatSatuId;
+//
+//    // Perawat 2 Id
+//    @Column(name = "perawat_dua_id")
+//    private Perawat perawatDuaId;
 
 
     @Column(name = "start_datetime")

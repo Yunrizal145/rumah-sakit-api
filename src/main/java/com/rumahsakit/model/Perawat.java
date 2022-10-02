@@ -45,15 +45,5 @@ public class Perawat extends PanacheEntityBase {
     @Column(name = "audit")
     private String audit;
 
-    @OneToMany
-    @JoinColumn(name = "foreign_id")
-    private DaftarShift daftarShift;
 
-    @OneToMany
-    @JoinColumn(name = "perawat_satu_id")
-    private DaftarRawatInap daftarRawatInap1;
-
-    @OneToMany
-    @JoinColumn(name = "perawat_dua_id")
-    private DaftarRawatInap daftarRawatInap2;
 }

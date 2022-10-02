@@ -25,15 +25,7 @@ public class DaftarPertemuan extends PanacheEntityBase {
     @Column(name = "daftarPertemuanId", unique = true)
     private Long daftarPertemuanId;
 
-    // Pasien Id
-    @OneToMany
-    @JoinColumn(name = "pasienId")
-    private Pasien pasienId;
 
-    // Dokter Id
-    @OneToMany
-    @JoinColumn(name = "dokterId")
-    private Dokter dokterId;
 
     @Column(name = "kategori")
     private String kategori;
@@ -44,7 +36,5 @@ public class DaftarPertemuan extends PanacheEntityBase {
     @Column(name = "tanggal")
     private Timestamp tanggal;
 
-    @OneToMany
-    @JoinColumn(name = "pertemuan_id")
-    private ResepObat resepObat;
+
 }

@@ -55,8 +55,6 @@ public class Staff extends PanacheEntityBase {
     @Column(name = "audit")
     private String audit;
 
-    @OneToMany
-    @JoinColumn(name = "foreign_id")
-    private DaftarShift daftarShift;
+
 
 }

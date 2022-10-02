@@ -31,7 +31,5 @@ public class DaftarShiftHari extends PanacheEntityBase {
     @Column(name = "hari")
     private String hari;
 
-    @ManyToOne
-    @JoinColumn(name = "daftarShiftId")
-    private DaftarShift daftarShift;
+
 }

@@ -34,10 +34,10 @@ public class DaftarShift extends PanacheEntityBase {
 
 
     @Column(name = "start_time")
-    private Timestamp startTime;
+    private String startTime;
 
     @Column(name = "end_time")
-    private Timestamp endTime;
+    private String endTime;
 
     @ManyToOne
     @JoinColumn(name = "staffId")
@@ -47,8 +47,6 @@ public class DaftarShift extends PanacheEntityBase {
     @JoinColumn(name = "perawatId")
     private Perawat perawat;
 
-    @OneToMany
-    @JoinColumn(name = "daftar_shift_id")
-    private DaftarShiftHari daftarShiftHari;
+
 
 }

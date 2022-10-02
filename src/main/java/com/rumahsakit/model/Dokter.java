@@ -48,12 +48,6 @@ public class Dokter extends PanacheEntityBase {
     @Column(name = "audit")
     private String audit;
 
-    @OneToMany
-    @JoinColumn(name = "dokter_id")
-    private JadwalPraktek jadwalPraktek;
 
-    @OneToMany
-    @JoinColumn(name = "dokter_id")
-    private DaftarRawatInap daftarRawatInap;
 
 }
